@@ -120,7 +120,26 @@ module.exports = {
 }
 ```
 
-
+我们也可以指定分析某几个入口文件的以来来踢去共有部分
+```js
+var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
+module.exports = {
+    entry: {
+        p1: "./page1",
+        p2: "./page2",
+        p3: "./page3",
+        ap1: "./admin/page1",
+        ap2: "./admin/page2"
+    },
+    output: {
+        filename: "[name].js"
+    },
+    plugins: [
+        new CommonsChunkPlugin("admin-commons.js", ["ap1", "ap2"]),
+        new CommonsChunkPlugin("commons.js", ["p1", "p2", "admin-commons.js"])
+    ]
+};
+```
 
 
 
