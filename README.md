@@ -76,7 +76,21 @@ module.exports = {
 ```
 
 
+打包多个文件入口
+``` js
+webpack p1=./page1 p2=./page2 p3=./page3 [name].entry-chunk.js
 
+module.exports = {
+    entry: {
+        p1: "./page1",
+        p2: "./page2",
+        p3: "./page3"
+    },
+    output: {
+        filename: "[name].entry.chunk.js"
+    }
+}
+```
 
 
 
