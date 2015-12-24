@@ -78,7 +78,10 @@ module.exports = {
 
 打包多个文件入口
 ``` js
-webpack p1=./page1 p2=./page2 p3=./page3 [name].entry-chunk.js
+$ webpack p1=./page1 p2=./page2 p3=./page3 [name].entry-chunk.js
+
+```
+```
 
 module.exports = {
     entry: {
@@ -91,8 +94,31 @@ module.exports = {
     }
 }
 ```
+这样我们就可以得到三个入口文件来分别引用
+```
+p1.entry.chunk.js, p2.entry.chunk.js and p3.entry.chunk.js
+```
 
+但是问题在与共用了的chunk没有被分离出来。
 
+所以我加入了 CommonsChunkPlugin
+
+```js
+var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
+module.exports = {
+    entry: {
+        p1: "./page1",
+        p2: "./page2",
+        p3: "./page3"
+    },
+    output: {
+        filename: "[name].entry.chunk.js"
+    },
+    plugins: [
+        new CommonsChunkPlugin("commons.chunk.js")
+    ]
+}
+```
 
 
 
