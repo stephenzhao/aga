@@ -75,7 +75,26 @@ div{
 
 /* 
     animation-fill-mode: none | forwards | backwards | both; 检索或设置对象动画时间之外的状态。
+    
+   有四个值可选，并且允许由逗号分隔多个值。
+    
+    none 不改变默认行为。
+    forwards 当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。
+    backwards 在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。
+    both 向前和向后填充模式都被应用。
 */
+/*
+animation-direction
+    normal：正常方向。
+    reverse：动画反向运行,方向始终与normal相反。（FF14.0.1以下不支持）
+    alternate：动画会循环正反方向交替运动，奇数次（1、3、5……）会正常运动，偶数次（2、4、6……）会反向运动，即所有相关联的值都会反向。
+    alternate-reverse：动画从反向开始，再正反方向交替运动，运动方向始终与alternate定义的相反。（FF14.0.1以下不支持）
+*/
+
+/*  之行
+    animation-iteration-count: number|infinite|initial|inherit;
+*/
+
 
 ```
 [CSS3 timing-function: steps() 详解](https://idiotwu.me/understanding-css3-timing-function-steps/)
