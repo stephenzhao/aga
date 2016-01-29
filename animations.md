@@ -91,7 +91,7 @@ animation-direction
     alternate-reverse：动画从反向开始，再正反方向交替运动，运动方向始终与alternate定义的相反。（FF14.0.1以下不支持）
 */
 
-/*  之行
+/*  执行次数
     animation-iteration-count: number|infinite|initial|inherit;
 */
 
