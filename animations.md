@@ -73,5 +73,9 @@ div{
     /* x1 and x2 must be in the range [0, 1] or the value is invalid.*/
 }
 
+/* 
+    animation-fill-mode: none | forwards | backwards | both; 检索或设置对象动画时间之外的状态。
+*/
+
 ```
 [CSS3 timing-function: steps() 详解](https://idiotwu.me/understanding-css3-timing-function-steps/)
