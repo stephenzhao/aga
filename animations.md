@@ -94,6 +94,10 @@ animation-direction
 /*  执行次数
     animation-iteration-count: number|infinite|initial|inherit;
 */
+/*
+    执行状态
+    animation-play-state: paused|running|initial|inherit;
+*/
 
 
 ```
