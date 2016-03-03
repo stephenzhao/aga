@@ -1,33 +1,36 @@
-# 生成电子书
+##构建书籍
 
+首先，使用 gitbook build 将书籍内容输出到默认目录，也就是当前目录下的 _book 目录。
 
-这本书使用 Gitbook 撰写并生成网站，请查看 package.json 中的 scripts 配置和 /scripts 目录中的脚本来了解这本书的构建和发布过程。
+```zsh
+$ gitbook build
+Starting build ...
+Successfully built!
 
+$ ls _book
+GLOSSARY.html       chapter1            chapter2            gitbook             glossary_index.json index.html          search_index.json
+```
+##创建 gh-pages 分支
 
+执行如下命令来创建分支，并且删除不需要的文件：
+```zsh
+$ git checkout --orphan gh-pages
+$ git rm --cached -r .
+$ git clean -df
+$ rm -rf *~
+```
+现在，目录下应该只剩下 _book 目录了，首先，忽略一些文件：
 
-```js
-// 初始化 nodejs 依赖
-$ npm install
+```zsh
+$ echo "*~" > .gitignore
+$ echo "_book" >> .gitignore
+$ git add .gitignore
+$ git commit -m "Ignore some files"
+```
+然后，加入 _book 下的内容到分支中：
 
-// 安装 gitbook 插件
-$ npm install gitbook-cli -g
-$ gitbook install ./content
-
-// 启动 gitbook 服务开始撰写工作
-$ npm run serve-gitbook
-
-// 生成 gitbook
-$ npm run generate-gitbook
-
-// 生成 wiki
-$ npm run generate-wiki
-
-// 发布到 gh-pages 分支
-$ npm run deploy-gitbook
-
-// 发布到 wiki
-$ npm run deploy-wiki
-
-// 生成并发布，是上面4条命令的快捷方式，通常编辑内容后只需要进行这个操作
-$ npm run generate-and-deploy
+``` zsh
+$ cp -r _book/* .
+$ git add .
+$ git commit -m "Publish book"
 ```
