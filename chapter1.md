@@ -32,3 +32,46 @@ d4.attachEvent('onclick',clk);
    }
  }
 ```
+用一下这个函数
+```js
+addEvent(document, 'click', function () {
+  console.log(this, arguments[0]);
+});
+//在标准浏览器下面，this就是dom本身而ie678却是window对象
+```
+改进
+```js
+function addEvent(el, type, fn){
+  if(el.addEventListener){
+    el.addEventListener(type, fn, false);
+  }else{
+    el['e'+fn] = function() {
+      fn.call(el, window.event);
+    }
+    el.attachEvent('on'+type, el['e'+fn]);
+  }
+}
+```
+上面我们封装了一个addEvent，解决了IE678handler中this只想window的问题，并且同意了事件对象作为事件handler的第一个参数传入。
+补上删除事件函数：
+```js
+  E={
+    add: function (el, type, fn) {
+      if(el.addEventListener){
+        el.addEventListener(type, fn, false);
+      }else{
+        el['e'+fn] = function() {
+          fn.call(el, window.event);
+        }
+        el.attachEvent('on'+type, el['e'+fn]);
+      }
+    }
+  },
+  remove: function(el, type, fn){
+    if(el.removeEventListener){
+      el.removeEventListener(type, fn, false);
+    }else{
+      el.removeEvent('on'+type, el['e'+fn]);
+    }
+  }
+```
