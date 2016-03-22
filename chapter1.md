@@ -75,3 +75,89 @@ function addEvent(el, type, fn){
     }
   }
 ```
+到这里我们已经拥有了天价删除事件两个方法，并且解决了哥哥浏览器下的部分差异，现在天价一个主动的触发事件的方法（*该方法模拟用户行为，如点击操作*）标准的使用dispatchEvent方法，IE678使用fireEvent方法，因为可能出线异常，使用了try catch
+
+```js
+  E={
+      add: function (el, type, fn) {
+        if(el.addEventListener){
+          el.addEventListener(type, fn, false);
+        }else{
+          el['e'+fn] = function() {
+            fn.call(el, window.event);
+          }
+          el.attachEvent('on'+type, el['e'+fn]);
+        }
+      }
+    },
+    remove: function(el, type, fn){
+      if(el.removeEventListener){
+        el.removeEventListener(type, fn, false);
+      }else{
+        el.removeEvent('on'+type, el['e'+fn]);
+      }
+    },
+    dispatch: function(el, type){
+      try{
+        if(el.dispatchEvent){
+          var evt = document.creatEvent('Event');
+          evt.iniEvent(type, true, true);
+          el.dispatchEvent(evt);
+        }else if(el.fireEvent){
+          el.fireEvent('on'+ type);
+        }
+      }catch(e){}
+    }
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
