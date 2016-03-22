@@ -109,6 +109,79 @@ function addEvent(el, type, fn){
       }catch(e){}
     }
 ```
+fixEvent
+```js
+function _fixEvent( evt, el ) {
+	var props = "altKey attrChange attrName bubbles button cancelable charCode clientX clientY ctrlKey currentTarget data detail eventPhase fromElement handler keyCode layerX layerY metaKey newValue offsetX offsetY originalTarget pageX pageY prevValue relatedNode relatedTarget screenX screenY shiftKey srcElement target toElement view wheelDelta which".split(" "),
+		len   = props.length;
+	function now() {return (new Date).getTime();}
+	function returnFalse() {return false;}
+	function returnTrue() {return true;}
+	function Event( src ) {
+		this.originalEvent = src;
+		this.type = src.type;
+		this.timeStamp = now();
+	}
+	Event.prototype = {
+		preventDefault: function() {
+			this.isDefaultPrevented = returnTrue;
+			var e = this.originalEvent;
+			if( e.preventDefault ) {
+				e.preventDefault();
+			}
+			e.returnValue = false;
+		},
+		stopPropagation: function() {
+			this.isPropagationStopped = returnTrue;
+			var e = this.originalEvent;
+			if( e.stopPropagation ) {
+				e.stopPropagation();
+			}		
+			e.cancelBubble = true;
+		},
+		stopImmediatePropagation: function() {
+			this.isImmediatePropagationStopped = returnTrue;
+			this.stopPropagation();
+		},
+		isDefaultPrevented: returnFalse,
+		isPropagationStopped: returnFalse,
+		isImmediatePropagationStopped: returnFalse
+	};
+	var originalEvent = evt;
+	evt = new Event( originalEvent );
+	
+	for(var i = len, prop; i;) {
+		prop = props[ --i ];
+		evt[ prop ] = originalEvent[ prop ];
+	}
+	if(!evt.target) {
+		evt.target = evt.srcElement || document;
+	}
+	if( evt.target.nodeType === 3 ) {
+		evt.target = evt.target.parentNode;
+	}
+	if( !evt.relatedTarget && evt.fromElement ) {
+		evt.relatedTarget = evt.fromElement === evt.target ? evt.toElement : evt.fromElement;
+	}
+	if( evt.pageX == null && evt.clientX != null ) {
+		var doc = document.documentElement, body = document.body;
+		evt.pageX = evt.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft || body && body.clientLeft || 0);
+		evt.pageY = evt.clientY + (doc && doc.scrollTop  || body && body.scrollTop  || 0) - (doc && doc.clientTop  || body && body.clientTop  || 0);
+	}
+	if( !evt.which && ((evt.charCode || evt.charCode === 0) ? evt.charCode : evt.keyCode) ) {
+		evt.which = evt.charCode || evt.keyCode;
+	}
+	if( !evt.metaKey && evt.ctrlKey ) {
+		evt.metaKey = evt.ctrlKey;
+	}
+	if( !evt.which && evt.button !== undefined ) {
+		evt.which = (evt.button & 1 ? 1 : ( evt.button & 2 ? 3 : ( evt.button & 4 ? 2 : 0 ) ));
+	}		
+	if(!evt.currentTarget) evt.currentTarget = el;
+	return evt;
+}	
+
+```
 
 
 
