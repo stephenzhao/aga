@@ -7,5 +7,5 @@
 * [3.25](325.md)
 * [dajia365环境配置](dajia365huan_jing_pei_zhi.md)
 * [git转换子目录为submodule](git_2_submodule.md)
-* widget wiki
+* [widget wiki](widget_wiki.md)
 
