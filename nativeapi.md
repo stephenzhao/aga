@@ -32,13 +32,12 @@ function (err, data) {
 
 版本:1.0
 
- 描述: 获取当前的用户信息，如果用户未登录，则返回错误。 
-
+描述:获取当前的用户信息，如果用户未登录，则返回错误。
 ``` json 
 
 method: getUserInfo
 
- params: 
+params: 
 	▪	无
 result: 
     - "user_id" 用户id
@@ -73,7 +72,7 @@ DEMO
 ```
 method: updateHeaderRightBtn
 
- params: 
+params: 
     ▪ {
         action: 'show',
         icon: 'author',
@@ -88,7 +87,7 @@ error
     ▪   code:
     1.  -32000: 未知错误
 
- params: 
+params: 
     ▪ {
         action: 'show',
         icon: 'mark',
@@ -129,12 +128,12 @@ error
 
 版本:1.4
 
- 描述: 注册一个底部浮条的点击事件
+描述:注册一个底部浮条的点击事件
 
 ``` json
 method: bottomFixedBar
 
- params: 
+params: 
     ▪   {type:'forumDetail', controls:[{
             name:'like',
             data:{
@@ -170,12 +169,12 @@ error
 
 版本:1.4
 
- 描述: 关闭当前的webview 相当于点击顶部的返回键
+描述:关闭当前的webview 相当于点击顶部的返回键
 
 ``` json
 method: closeWebview
 
- params: 
+params: 
     ▪  null
 result: 
     ▪   null
@@ -191,12 +190,12 @@ error
 
 版本:1.4
 
- 描述:调起native论坛点赞
+描述:调起native论坛点赞
 
 ``` json
 method: forumLike
 
- params: 
+params: 
     ▪   {
         type_id: 1主贴喜欢，2子贴喜欢
         from_id: 被喜欢的帖子ID,
@@ -216,12 +215,12 @@ error
 
 版本:1.4
 
- 描述:调起native论坛回复
+描述:调起native论坛回复
 
 ``` json
 method: forumReply
 
- params: 
+params: 
     ▪   {
         tid: 帖子ID
         atc_title: 标题，可不填
@@ -264,12 +263,12 @@ error
 
 版本:1.4
 
- 描述:调起native论坛发帖
+描述:调起native论坛发帖
 
 ``` json
 method: forumAdd
 
- params: 
+params: 
     ▪   {
         fid: 论坛板块ID
         atc_title: 标题
@@ -314,12 +313,12 @@ error
 
 版本:1.4
 
- 描述:调起native评论列表分页
+描述:调起native评论列表分页
 
 ``` js
 method: forumPage
 
- params: 
+params: 
     ▪   {
         page: 当前页，
         page_count:总页数
@@ -338,12 +337,12 @@ error
 
 版本:1.2
 
- 描述:获取设备情况
+描述:获取设备情况
 
 ``` json
 method: getDeviceInfo
 
- params: 
+params: 
     ▪   null
 result: 
     ▪ {
@@ -365,12 +364,12 @@ error
 
 版本:1.2
 
- 描述:返回 当开启一个webview时监听native的返回键
+描述:返回 当开启一个webview时监听native的返回键
 
 ``` js
 method: back
 
- params: 
+params: 
     ▪   null
 result: null
 error
@@ -384,13 +383,13 @@ error
 
 版本:1.4
 
- 描述:根据提供的url打开一个新的webView，顶栏有一个返回按钮。createWebView会根据参数决定是否显示搜索框等。
+描述:根据提供的url打开一个新的webView，顶栏有一个返回按钮。createWebView会根据参数决定是否显示搜索框等。
 注意: 如果controls为空, 那么webview应该默认带一个title控件, 并且这个title控件的text为空, 以备后续updateTitle接口使用.
 
 ``` js
 method: createWebView
 params:
- - url: url有可能是相对的，如果是相对路径的话就根据当前webView的url进行计算
+- url: url有可能是相对的，如果是相对路径的话就根据当前webView的url进行计算
 - controls: Object 可选 包含一个控件的配置。
     例如显示搜索框: control: [{ type: 'searchBox', text: '关键字', placeholder: '搜索' }]
 result:
@@ -410,7 +409,7 @@ result:
     
     method: bottomFixedBarClick
 
-     params:返回的参数列表 
+    params:返回的参数列表 
         ▪   {
                 fn_index:0,
                 name:'page',
@@ -430,7 +429,7 @@ result:
 ``` js
 method: checkBigPicture
 
- params: 
+params: 
     ▪ {
         images: ["http://bbsimg.dajia365.com/bbs/1506/thread/4_276_ac47eac23317eae.jpg-thumb","http://bbsimg.dajia365.com/bbs/1506/thread/4_276_ac47eac23317eae.jpg-thumb"],
         current_index:2
@@ -438,3 +437,5 @@ method: checkBigPicture
 result: null
 
 ```
+
+
