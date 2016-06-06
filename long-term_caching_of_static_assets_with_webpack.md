@@ -112,6 +112,12 @@ module.exports = {
   ]
 }
 ```
+Or you can just use one of these plugins to export JSON files:
+- **[webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin ) **
+- **[assets-webpack-plugin](https://www.npmjs.com/package/assets-webpack-plugin) **
+
+
+
 ## Deterministic hashes
 ## Conclusion
 Webpack is very modular and allows lots of optimizations that aren’t enabled by default. The flexibility Webpack provides makes it possible to use it with any setup imaginable, but keeping in mind that long-term caching is a good general practice, I hope next versions will get better defaults to make things easier. Here is a sample Github repository with an example used in this article.
