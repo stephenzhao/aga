@@ -17,4 +17,6 @@ To enable long-term caching of static resources produced by webpack:
 3. Generate the chunk-manifest JSON and inline it into the HTML page before loading resources.
 4. Ensure that the entry point chunk containing the bootstrapping code doesn’t change its hash over time for the same set of dependencies.
 5. Profit!
+
+
 ## The problem
