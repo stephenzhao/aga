@@ -131,6 +131,20 @@ We’re done, you might think. Well, almost.
 To minimise the size of generated files, webpack uses identifiers instead of module names. During compilation identifiers are generated, mapped to chunk filenames and then put into a JavaScript object called chunk manifest. It is (along with some bootstrapping code) then placed into the entry chunk and it is crucial for webpack-packaged code to work.
 
 The problem with this is the same as before: whenever we change any part of the code, it will, even if the rest of its contents wasn’t altered, update our entry chunk to include the new manifest. This, in turn, will lead to a new hash and dismiss the long-term caching.
+To fix that, we should use [chunk-manifest-webpack-plugin](https://github.com/diurnalist/chunk-manifest-webpack-plugin) which will extract that manifest to a separate JSON file. Here is an updated webpack.config.js which will produce chunk-manifest.json in our build directory
+```js
+// webpack.config.js
+var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 
+module.exports = {
+  // your config values here
+  plugins: [
+    new ChunkManifestPlugin({
+      filename: "chunk-manifest.json",
+      manifestVariable: "webpackManifest"
+    })
+  ]
+};
+```
 ## Conclusion
 Webpack is very modular and allows lots of optimizations that aren’t enabled by default. The flexibility Webpack provides makes it possible to use it with any setup imaginable, but keeping in mind that long-term caching is a good general practice, I hope next versions will get better defaults to make things easier. Here is a sample Github repository with an example used in this article.
