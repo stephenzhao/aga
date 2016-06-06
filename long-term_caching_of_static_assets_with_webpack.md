@@ -97,7 +97,21 @@ When working in development mode, you just reference a JavaScript file by entry 
 <script src="main.js"></script>
 ```
 In order to reference a correct file, we’ll need some information about our build. This can be extracted from webpack compilation stats by using this simple plugin:
-
+```js
+// webpack.config.js
+module.exports = {
+  ...
+  plugins: [
+    function() {
+      this.plugin("done", function(stats) {
+        require("fs").writeFileSync(
+          path.join(__dirname, "...", "stats.json"),
+          JSON.stringify(stats.toJson()));
+      });
+    }
+  ]
+}
+```
 ## Deterministic hashes
 ## Conclusion
 Webpack is very modular and allows lots of optimizations that aren’t enabled by default. The flexibility Webpack provides makes it possible to use it with any setup imaginable, but keeping in mind that long-term caching is a good general practice, I hope next versions will get better defaults to make things easier. Here is a sample Github repository with an example used in this article.
