@@ -83,6 +83,12 @@ module.exports = {
 }
 ```
 This config will also create 2 files, but in this case, each file will get its own unique hash.
+
+```
+main.155567618f4367cd1cb8.js 1.43 kB 0 [emitted] main
+vendor.c2330c22cd2decb5da5a.js 1.43 kB 1 [emitted] vendor
+```
+
 ## Get filenames from webpack compilation stats
 ## Deterministic hashes
 ## Conclusion
