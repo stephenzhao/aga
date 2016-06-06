@@ -116,7 +116,13 @@ Or you can just use one of these plugins to export JSON files:
 - **[webpack-manifest-plugin](https://www.npmjs.com/package/webpack-manifest-plugin ) **
 - **[assets-webpack-plugin](https://www.npmjs.com/package/assets-webpack-plugin) **
 
-
+A sample output of webpack-manifest-plugin for our config looks like:
+```
+{
+  “main.js”: “main.155567618f4367cd1cb8.js”,
+  “vendor.js”: “vendor.c2330c22cd2decb5da5a.js”
+}
+```
 
 ## Deterministic hashes
 ## Conclusion
