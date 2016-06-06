@@ -123,6 +123,7 @@ A sample output of webpack-manifest-plugin for our config looks like:
   “vendor.js”: “vendor.c2330c22cd2decb5da5a.js”
 }
 ```
+The rest depends on your server setup but I believe is pretty straightforward. There is a nice walk through if you’re using Rails.
 
 ## Deterministic hashes
 ## Conclusion
