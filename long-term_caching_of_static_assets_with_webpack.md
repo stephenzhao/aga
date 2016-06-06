@@ -146,5 +146,8 @@ module.exports = {
   ]
 };
 ```
+
+Since we removed the manifest from entry chunk, now it’s our responsibility to provide webpack with it. You have probably noticed the manifestVariable option in the example above. This is the name of the global variable where webpack will look for the manifest JSON and this is why it should be defined before we require our bundle in HTML. This is easy as inlining the contents of the JSON in HTML. Our HTML head section should look like this:
+
 ## Conclusion
 Webpack is very modular and allows lots of optimizations that aren’t enabled by default. The flexibility Webpack provides makes it possible to use it with any setup imaginable, but keeping in mind that long-term caching is a good general practice, I hope next versions will get better defaults to make things easier. Here is a sample Github repository with an example used in this article.
