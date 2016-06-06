@@ -9,4 +9,5 @@
 * [git转换子目录为submodule](git_2_submodule.md)
 * [widget wiki](widget_wiki.md)
 * [NativeApi](nativeapi.md)
+* Long-term caching of static assets with Webpack
 
