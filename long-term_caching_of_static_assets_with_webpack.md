@@ -195,6 +195,40 @@ module.exports = {
 };
 ```
 Using this config the vendor chunk should not be changing its hash unless you change its code or dependencies. Here is a sample output for 2 runs with moduleB.js being changed between the runs:
+```
+> webpack
 
+Hash: 92670583f688a262fdad
+Version: webpack 1.10.1
+Time: 65ms
+
+Asset Size Chunks Chunk Names
+chunk-manifest.json 68 bytes [emitted]
+vendor.6d107863983028982ef4.js 3.71 kB 0 [emitted] vendor
+1.c4116058de00860e5aa8.js 107 bytes 1 [emitted]
+main.5e17f4dff47bc1a007c0.js 373 bytes 2 [emitted] main
+
+[0] ./src/index.js 186 bytes {2} [built]
+[0] ./src/vendor.js 40 bytes {0} [built]
+[1] ./src/moduleA.js 28 bytes {2} [built]
+[2] ./src/moduleB.js 28 bytes {1} [built]
+
+> webpack
+
+Hash: a9ee1d1e46a538469d7f
+Version: webpack 1.10.1
+Time: 67ms
+
+Asset Size Chunks Chunk Names
+chunk-manifest.json 68 bytes [emitted]
+vendor.6d107863983028982ef4.js 3.71 kB 0 [emitted] vendor
+1.2883246944b1147092b1.js 107 bytes 1 [emitted]
+main.5e17f4dff47bc1a007c0.js 373 bytes 2 [emitted] main
+
+[0] ./src/index.js 186 bytes {2} [built]
+[0] ./src/vendor.js 40 bytes {0} [built]
+[1] ./src/moduleA.js 28 bytes {2} [built]
+[2] ./src/moduleB.js 28 bytes {1} [built]
+```
 ## Conclusion
 Webpack is very modular and allows lots of optimizations that aren’t enabled by default. The flexibility Webpack provides makes it possible to use it with any setup imaginable, but keeping in mind that long-term caching is a good general practice, I hope next versions will get better defaults to make things easier. Here is a sample Github repository with an example used in this article.
