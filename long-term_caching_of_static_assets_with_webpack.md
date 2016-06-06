@@ -61,6 +61,7 @@ vendor.55e783391098c2496a8f.js 1.43 kB 1 [emitted] vendor
 ```
 But the problem here is that, each time we create a new build, all filenames will get altered and clients will have to re-download the whole application code again.
 
+Not exactly what we wanted, huh? So how can we guarantee that clients always get the latest versions of assets without re-downloading all of them?
 
 ## Separate hash per file
 ## Get filenames from webpack compilation stats
