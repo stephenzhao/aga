@@ -47,7 +47,18 @@ module.exports = {
   }
 };
 ```
+Running webpack with this config will produce the following output:
+```
+Hash: 55e783391098c2496a8f
+Version: webpack 1.10.1
+Time: 58ms
+Asset Size Chunks Chunk Names
+main.55e783391098c2496a8f.js 1.43 kB 0 [emitted] main
+vendor.55e783391098c2496a8f.js 1.43 kB 1 [emitted] vendor
+[0] ./src/index.js 46 bytes {0} [built]
+[0] ./src/vendor.js 40 bytes {1} [built]
 
+```
 
 ## Separate hash per file
 ## Get filenames from webpack compilation stats
