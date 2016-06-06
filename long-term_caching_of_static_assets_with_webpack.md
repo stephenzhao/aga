@@ -24,6 +24,31 @@ To enable long-term caching of static resources produced by webpack:
 
 
 ## The problem
+Each time something needs to be updated in our code, it has to be re-deployed on the server and then re-downloaded by all clients. This is clearly very inefficient since fetching resources over the network can be slow. This is why browsers cache static resources. But the way it works has a pitfall: if we don’t change filenames of our resources when deploying a new version, browser might think it hasn’t been updated and client will get a cached version of it.
+
+Probably the simplest way to tell the browser to download a newer version is to alter asset’s file name. In a pre-webpack era we used to add a build number to the filenames as a parameter and then increment it:
+```
+application.js?build=1
+application.css?build=1
+```
+It is even easier to do with webpack: each webpack build generates a unique hash which can be used to compose a filename. The following example config will generate 2 files (1 per entry point) with a hash in filenames:
+
+```js
+
+// webpack.config.js
+module.exports = {
+  entry: {
+    vendor: './src/vendor.js',
+    main: './src/index.js'
+  },
+  output: {
+    path: path.join(__dirname, 'build'),
+    filename: '[name].[hash].js'
+  }
+};
+```
+
+
 ## Separate hash per file
 ## Get filenames from webpack compilation stats
 ## Deterministic hashes
