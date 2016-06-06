@@ -70,7 +70,18 @@ What if we could produce the same filename if the contents of the file did not c
 
 >Separate your vendor and application code with **[CommonsChunkPlugin](http://webpack.github.io/docs/list-of-plugins.html#2-explicit-vendor-chunk)** and create an explicit vendor chunk to prevent it from changing too often.
 
+Webpack allows you to generate hashes depending on the file contents. Here is the updated config (excerpt):
 
+```js
+// webpack.config.js
+module.exports = {
+  ...
+  output: {
+    ...
+    filename: '[name].[chunkhash].js'
+  }
+}
+```
 
 ## Get filenames from webpack compilation stats
 ## Deterministic hashes
