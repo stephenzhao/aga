@@ -82,7 +82,7 @@ module.exports = {
   }
 }
 ```
-
+This config will also create 2 files, but in this case, each file will get its own unique hash.
 ## Get filenames from webpack compilation stats
 ## Deterministic hashes
 ## Conclusion
