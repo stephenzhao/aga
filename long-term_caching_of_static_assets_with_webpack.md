@@ -91,7 +91,8 @@ vendor.c2330c22cd2decb5da5a.js 1.43 kB 1 [emitted] vendor
 >Don’t use [**chunkhash**] in development since this will increase compilation time. Separate development and production configs and use [**name**].js for development and [**name**].[**chunkhash**].js in production.
 
 
-## Get filenames from webpack compilation stats
+## Get filenames from
+When working in development mode, you just reference a JavaScript file by entry point name in your HTML.
 ## Deterministic hashes
 ## Conclusion
 Webpack is very modular and allows lots of optimizations that aren’t enabled by default. The flexibility Webpack provides makes it possible to use it with any setup imaginable, but keeping in mind that long-term caching is a good general practice, I hope next versions will get better defaults to make things easier. Here is a sample Github repository with an example used in this article.
