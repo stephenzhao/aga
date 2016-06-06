@@ -230,5 +230,6 @@ main.5e17f4dff47bc1a007c0.js 373 bytes 2 [emitted] main
 [1] ./src/moduleA.js 28 bytes {2} [built]
 [2] ./src/moduleB.js 28 bytes {1} [built]
 ```
+Notice that vendor chunk has the same filename. Exactly what we wanted!
 ## Conclusion
 Webpack is very modular and allows lots of optimizations that aren’t enabled by default. The flexibility Webpack provides makes it possible to use it with any setup imaginable, but keeping in mind that long-term caching is a good general practice, I hope next versions will get better defaults to make things easier. Here is a sample Github repository with an example used in this article.
