@@ -8,6 +8,10 @@ tags:
     - 翻译
     - 前端工程化
 ---
+
+> [原文](https://medium.com/@okonetchnikov/long-term-caching-of-static-assets-with-webpack-1ecb139adb95#.skj8j8h4u)
+
+
 Webpack is a great way to package all your static resources such as JavaScript, CSS or even images, but to effectively use generated assets in production one should leverage long-term caching. Documentation on this topic is scattered across different resources and it is not quite easy to get it right. The aim of this article is to guide front-end developers through the complete setup.
 
 ## tl;dr
