@@ -66,6 +66,12 @@ Not exactly what we wanted, huh? So how can we guarantee that clients always get
 ## Separate hash per file
 What if we could produce the same filename if the contents of the file did not change between builds? For example, the file where we put all our libraries and other vendor stuff does not change that often.
 
+*Pro Tip!*
+
+>Separate your vendor and application code with **[CommonsChunkPlugin](http://webpack.github.io/docs/list-of-plugins.html#2-explicit-vendor-chunk)** and create an explicit vendor chunk to prevent it from changing too often.
+
+
+
 ## Get filenames from webpack compilation stats
 ## Deterministic hashes
 ## Conclusion
