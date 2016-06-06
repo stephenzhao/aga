@@ -148,6 +148,53 @@ module.exports = {
 ```
 
 Since we removed the manifest from entry chunk, now it’s our responsibility to provide webpack with it. You have probably noticed the manifestVariable option in the example above. This is the name of the global variable where webpack will look for the manifest JSON and this is why it should be defined before we require our bundle in HTML. This is easy as inlining the contents of the JSON in HTML. Our HTML head section should look like this:
+```
+<html>
+  <head>
+    <script>
+    //<![CDATA[
+    window.webpackManifest = {"0":"main.3d038f325b02fdee5724.js","1":"1.c4116058de00860e5aa8.js"}
+    //]]>
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
+```
+The second issue is how webpack requires modules: by default the order of modules in the bundle isn’t deterministic for the same set of dependencies. This means: modules can get different IDs from build to build, resulting in a slightly different content and thus different hashes. There is [an issue on Github](https://github.com/webpack/webpack/issues/950) which suggests to use [OccurenceOrderPlugin](http://webpack.github.io/docs/list-of-plugins.html#occurenceorderplugin) to work around this.
+
+So the final webpack.config.js should look like this:
+```js
+var path = require('path');
+var webpack = require('webpack');
+var ManifestPlugin = require('webpack-manifest-plugin');
+var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+
+module.exports = {
+  entry: {
+    vendor: './src/vendor.js',
+    main: './src/index.js'
+  },
+  output: {
+    path: path.join(__dirname, 'build'),
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js'
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor",
+      minChunks: Infinity,
+    }),
+    new ManifestPlugin(),
+    new ChunkManifestPlugin({
+      filename: "chunk-manifest.json",
+      manifestVariable: "webpackManifest"
+    }),
+    new webpack.optimize.OccurenceOrderPlugin()
+  ]
+};
+```
+Using this config the vendor chunk should not be changing its hash unless you change its code or dependencies. Here is a sample output for 2 runs with moduleB.js being changed between the runs:
 
 ## Conclusion
 Webpack is very modular and allows lots of optimizations that aren’t enabled by default. The flexibility Webpack provides makes it possible to use it with any setup imaginable, but keeping in mind that long-term caching is a good general practice, I hope next versions will get better defaults to make things easier. Here is a sample Github repository with an example used in this article.
