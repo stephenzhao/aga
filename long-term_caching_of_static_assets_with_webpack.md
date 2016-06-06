@@ -64,7 +64,7 @@ But the problem here is that, each time we create a new build, all filenames wil
 Not exactly what we wanted, huh? So how can we guarantee that clients always get the latest versions of assets without re-downloading all of them?
 
 ## Separate hash per file
-
+What if we could produce the same filename if the contents of the file did not change between builds? For example, the file where we put all our libraries and other vendor stuff does not change that often.
 
 ## Get filenames from webpack compilation stats
 ## Deterministic hashes
