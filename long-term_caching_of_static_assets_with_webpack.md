@@ -96,6 +96,7 @@ When working in development mode, you just reference a JavaScript file by entry 
 ```js
 <script src="main.js"></script>
 ```
+In order to reference a correct file, we’ll need some information about our build. This can be extracted from webpack compilation stats by using this simple plugin:
 
 ## Deterministic hashes
 ## Conclusion
